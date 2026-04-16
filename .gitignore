@@ -1,0 +1,29 @@
+# Build output
+build/
+
+# VSCode settings (optional: remove the second line if you want to share settings with teammates)
+.vscode/
+!.vscode/extensions.json
+
+# Compiled binaries
+*.exe
+*.out
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+*.pdb
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+install_manifest.txt
+compile_commands.json
+
+# External dependencies (if you ever use submodules wrongly again)
+external/
