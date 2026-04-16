@@ -14,47 +14,51 @@ Time - Progress
 
 */
 
-// Copyright 2020 Arthur Sonzogni. All rights reserved.
-// Use of this source code is governed by the MIT license that can be found in
-// the LICENSE file.
-#include <string>  // for basic_string, string, allocator
-#include <vector>  // for vector
+// Libraries
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <chrono>
+#include <ctime>
+#include <vector>
 
-#include "ftxui/component/screen_interactive.hpp"
-#include "ftxui/component/captured_mouse.hpp"  // for ftxui
-#include "ftxui/component/component.hpp"  // for Dropdown, Horizontal, Vertical
+enum days {Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};
 
-int main() {
-  using namespace ftxui;
+typedef struct dayTime {
+    int timeStamp[4] = {0,0,0,0}; // Weekday,Day,Month,Year
+    int startTime[50]; // In Seconds Start From 00:00:00
+    int stopTime[50];
+    int elapsedTime[50]; // Stop-Start
+    int currentElapse = 0;
+};
 
-  std::vector<std::string> entries = {
-      "tribute",     "clearance", "ally",        "bend",        "electronics",
-      "module",      "era",       "cultural",    "sniff",       "nationalism",
-      "negotiation", "deliver",   "figure",      "east",        "tribute",
-      "clearance",   "ally",      "bend",        "electronics", "module",
-      "era",         "cultural",  "sniff",       "nationalism", "negotiation",
-      "deliver",     "figure",    "east",        "tribute",     "clearance",
-      "ally",        "bend",      "electronics", "module",      "era",
-      "cultural",    "sniff",     "nationalism", "negotiation", "deliver",
-      "figure",      "east",
-  };
+void punchCardRead(std::fstream* f);
+void punchCardMake(std::fstream* f);
+void punchCardWrite(dayTime* day);
 
-  int selected_1 = 0;
-  int selected_2 = 0;
-  int selected_3 = 0;
-  int selected_4 = 0;
+int main(){
+    dayTime Week1[7];
+    std::fstream punch("punchCard.csv", std::ios::in);
+    if(!punch.is_open()){
+        punchCardMake(&punch);
+    } else {
+        punchCardRead(&punch);
+    }
 
-  auto layout = Container::Vertical({
-      Container::Horizontal({
-          Dropdown(&entries, &selected_1),
-          Dropdown(&entries, &selected_2),
-      }),
-      Container::Horizontal({
-          Dropdown(&entries, &selected_3),
-          Dropdown(&entries, &selected_4),
-      }),
-  });
 
-  auto screen = ScreenInteractive::FitComponent();
-  screen.Loop(layout);
+
+
+    return 0; 
+}
+
+void punchCardRead(std::fstream* f){
+
+}
+
+void punchCardMake(std::fstream* f){
+
+}
+
+void punchCardWrite(dayTime* day){
+    
 }
